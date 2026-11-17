@@ -52,9 +52,10 @@ projetoSINE/
 ├── requirements.txt
 ├── .env.example
 ├── .gitignore
-├── templates/
+├── README.md
+├── screenshots/
 ├── static/
-└── data/
+└── templates/
 ```
 
 ## Configuração local
@@ -62,7 +63,7 @@ projetoSINE/
 ### 1. Clone o repositório
 
 ```bash
-git clone URL_DO_REPOSITORIO
+git clone https://github.com/EduHoffmeister/portal-empregos-sine
 cd portal-empregos-sine
 ```
 
