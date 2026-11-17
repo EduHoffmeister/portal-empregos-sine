@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Vagas disponíveis | Portal de Empregos SINE{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">OPORTUNIDADES DE TRABALHO</span>
+    <h1>Encontre sua próxima <span>oportunidade.</span></h1>
+    <p>Consulte as vagas divulgadas pelo SINE e confira os requisitos antes de comparecer à unidade.</p>
+  </div>
+  <div class="hero-symbol" aria-hidden="true"><span> SINE </span><b>+</b></div>
+</section>
+
+<section class="section-heading">
+  <div><span class="eyebrow blue">VAGAS PUBLICADAS</span><h2>Oportunidades disponíveis</h2></div>
+  <span class="count">{{ jobs|length }} vaga(s)</span>
+</section>
+
+<form class="search-bar" method="get" action="{{ url_for('home') }}">
+  <span class="search-icon">⌕</span>
+  <input type="search" name="q" value="{{ query }}" placeholder="Pesquise por cargo, atividade ou cidade..." aria-label="Pesquisar vagas">
+  <button type="submit">Pesquisar</button>
+  {% if query %}<a class="clear-search" href="{{ url_for('home') }}">Limpar</a>{% endif %}
+</form>
+
+{% if jobs %}
+  <div class="job-grid">
+    {% for job in jobs %}
+    <article class="job-card">
+      <div class="job-card-top"><span class="job-tag">VAGA DISPONÍVEL</span><span class="job-date">{{ job.published_at }}</span></div>
+      <h3>{{ job.title }}</h3>
+      {% if job.company %}<p class="company">{{ job.company }}</p>{% endif %}
+      <div class="job-meta">
+        {% if job.location %}<span>⌖ {{ job.location }}</span>{% endif %}
+        <span>▣ {{ job.quantity }} oportunidade(s)</span>
+      </div>
+      <p class="job-summary">{{ job.description or "Consulte os detalhes desta oportunidade." }}</p>
+      <a class="text-link" href="{{ url_for('job_detail', job_id=job.id) }}">Ver detalhes <span>→</span></a>
+    </article>
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="empty-state">
+    <div class="empty-icon">⌕</div>
+    <h3>{% if query %}Nenhuma vaga encontrada{% else %}Nenhuma vaga disponível no momento{% endif %}</h3>
+    <p>{% if query %}Tente pesquisar usando outro cargo ou palavra-chave.{% else %}Novas oportunidades poderão ser publicadas aqui em breve.{% endif %}</p>
+  </div>
+{% endif %}
+<div class="notice"><strong>Importante:</strong> este portal é apenas para consulta. Não é possível se candidatar pela internet. Para demonstrar interesse em uma vaga, compareça pessoalmente a uma unidade do SINE e confirme se a oportunidade continua disponível.</div>
+{% endblock %}

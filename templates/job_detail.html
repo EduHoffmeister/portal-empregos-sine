@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}{{ job.title }} | Portal de Empregos SINE{% endblock %}
+{% block content %}
+<a class="back-link" href="{{ url_for('home') }}">← Voltar para as vagas</a>
+<article class="detail-card">
+  <div class="detail-top"><span class="job-tag">VAGA DISPONÍVEL</span><span class="job-date">Publicada em {{ job.published_at }}</span></div>
+  <h1>{{ job.title }}</h1>
+  {% if job.company %}<p class="company large">{{ job.company }}</p>{% endif %}
+  <div class="detail-meta">
+    <div><small>Quantidade</small><strong>{{ job.quantity }} vaga(s)</strong></div>
+    {% if job.location %}<div><small>Local de trabalho</small><strong>{{ job.location }}</strong></div>{% endif %}
+    {% if job.salary %}<div><small>Salário</small><strong>{{ job.salary }}</strong></div>{% endif %}
+    {% if job.schedule %}<div><small>Jornada</small><strong>{{ job.schedule }}</strong></div>{% endif %}
+  </div>
+  <section class="detail-section"><h2>Atividades a serem realizadas</h2><p>{{ job.description or "Não informado." }}</p></section>
+  <section class="detail-section"><h2>Requisitos mínimos</h2><p>{{ job.requirements or "Não informado." }}</p></section>
+  <div class="detail-two">
+    <section class="detail-section"><h2>Escolaridade</h2><p>{{ job.education or "Não informado." }}</p></section>
+    <section class="detail-section"><h2>Experiência</h2><p>{{ job.experience or "Não informado." }}</p></section>
+  </div>
+  <div class="notice"><strong>Como demonstrar interesse:</strong> compareça pessoalmente ao SINE. Este site não realiza inscrições nem recebe currículos. Confirme presencialmente a disponibilidade da vaga e os documentos necessários.</div>
+</article>
+{% endblock %}

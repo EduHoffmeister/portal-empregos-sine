@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}Erro {{ code }} | Portal de Empregos SINE{% endblock %}
+{% block content %}
+<div class="empty-state error-state"><div class="empty-icon">{{ code }}</div><h1>Não foi possível concluir</h1><p>{{ message }}</p><a class="primary-button" href="{{ url_for('home') }}">Voltar ao início</a></div>
+{% endblock %}

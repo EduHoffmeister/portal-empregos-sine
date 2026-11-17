@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}{{ page_title }} | Portal de Empregos SINE{% endblock %}
+{% block content %}
+<a class="back-link" href="{{ url_for('admin_dashboard') }}">← Voltar ao painel</a>
+<div class="form-page-heading"><span class="eyebrow blue">PAINEL DO SINE</span><h1>{{ page_title }}</h1><p>Preencha as informações que serão exibidas aos candidatos.</p></div>
+<form class="job-edit-form" method="post">
+  <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+  <div class="form-section"><h2>Informações da vaga</h2>
+    <div class="form-grid">
+      <label class="span-2">Nome do cargo *<input name="title" required maxlength="120" value="{{ job.title if job else '' }}" placeholder="Ex.: Auxiliar de produção"></label>
+      <label>Quantidade de vagas *<input type="number" name="quantity" min="1" max="999" required value="{{ job.quantity if job else 1 }}"></label>
+      <label>Empresa (opcional)<input name="company" maxlength="120" value="{{ job.company if job else '' }}" placeholder="Nome público da empresa"></label>
+      <label class="span-2">Local de trabalho<input name="location" maxlength="160" value="{{ job.location if job else '' }}" placeholder="Ex.: Centro, Taquara/RS"></label>
+      <label>Salário<input name="salary" maxlength="100" value="{{ job.salary if job else '' }}" placeholder="Ex.: A combinar"></label>
+      <label>Jornada de trabalho<input name="schedule" maxlength="160" value="{{ job.schedule if job else '' }}" placeholder="Ex.: Segunda a sexta, 8h às 17h"></label>
+    </div>
+  </div>
+  <div class="form-section"><h2>Detalhes e requisitos</h2>
+    <div class="form-grid">
+      <label class="span-2">Atividades a serem realizadas<textarea name="description" rows="5" maxlength="5000" placeholder="Descreva as principais atividades do cargo.">{{ job.description if job else '' }}</textarea></label>
+      <label class="span-2">Requisitos mínimos<textarea name="requirements" rows="4" maxlength="3000" placeholder="Informe os requisitos obrigatórios para a vaga.">{{ job.requirements if job else '' }}</textarea></label>
+      <label>Escolaridade mínima<input name="education" maxlength="160" value="{{ job.education if job else '' }}" placeholder="Ex.: Ensino fundamental completo"></label>
+      <label>Experiência<input name="experience" maxlength="160" value="{{ job.experience if job else '' }}" placeholder="Ex.: Não exige experiência"></label>
+      <label>Status
+        <select name="status">
+          <option value="ativa" {% if not job or job.status == 'ativa' %}selected{% endif %}>Disponível</option>
+          <option value="encerrada" {% if job and job.status == 'encerrada' %}selected{% endif %}>Encerrada</option>
+        </select>
+      </label>
+    </div>
+  </div>
+  <div class="form-actions"><a class="secondary-button" href="{{ url_for('admin_dashboard') }}">Cancelar</a><button class="primary-button" type="submit">Salvar vaga</button></div>
+  <p class="form-note">* Campos obrigatórios. Não cadastre dados pessoais de candidatos nem informações sigilosas de empresas.</p>
+</form>
+{% endblock %}
