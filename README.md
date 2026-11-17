@@ -9,16 +9,17 @@ O Portal de Empregos SINE tem como objetivo facilitar a divulgação de vagas de
 
 Os candidatos podem consultar as vagas disponíveis, verificar requisitos e informações sobre as oportunidades. Para demonstrar interesse, devem comparecer presencialmente ao atendimento do SINE.
 
+
 ## Capturas de tela
 
 ### Página inicial
-![Página inicial](screenshots/pagina-inicial.png)
+![Página inicial](screenshots/pagina-inicial.PNG)
 
-### Detalhes de uma vaga
-![Detalhes da vaga](screenshots/detalhes-vaga.png)
+### Detalhes da vaga
+![Detalhes da vaga](screenshots/detalhes-vaga.PNG)
 
 ### Painel administrativo
-![Painel administrativo](screenshots/painel-admin.png)
+![Painel administrativo](screenshots/painel-admin.PNG)
 
 ## Funcionalidades
 
