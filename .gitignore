@@ -4,3 +4,4 @@ __pycache__/
 data/
 *.pyc
 app_backup.py
+.vscode/
